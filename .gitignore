@@ -1,0 +1,6 @@
+node_modules/
+.vercel/
+.golive/
+GOLIVE_REPORT.md
+GOLIVE_HANDOVER.md
+.DS_Store

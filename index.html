@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GoLive × gstack demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; min-height: 100dvh; display: grid; place-items: center; background: #0b0b0c; color: #e8e8ea;
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    main { width: min(34rem, 90vw); }
+    h1 { font-size: 1.4rem; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
+    p { margin: 0 0 0.7rem; color: #a9a9b2; }
+    code { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: #17171a; padding: 0.15rem 0.35rem; border-radius: 4px; }
+    .status { margin-top: 1.4rem; font: 13px/1.5 ui-monospace, Menlo, monospace; color: #8f8f99; }
+    .ok { color: #7ee0a3; }
+    .down { color: #f0837a; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GoLive × gstack demo</h1>
+    <p>A disposable fixture for the <code>golive</code> → <code>/setup-deploy</code> handoff walkthrough.</p>
+    <p>Deployed on the owner's own provider accounts; no shared backend or service account.</p>
+    <p class="status">api/health: <span id="h">checking…</span></p>
+  </main>
+  <script>
+    const el = document.getElementById('h');
+    fetch('/api/health', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((d) => { el.textContent = d.ok ? `ok · ${d.ts}` : 'not ok'; el.className = d.ok ? 'ok' : 'down'; })
+      .catch(() => { el.textContent = 'unreachable'; el.className = 'down'; });
+  </script>
+</body>
+</html>
