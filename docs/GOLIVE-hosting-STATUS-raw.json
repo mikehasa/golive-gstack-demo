@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "version": 1,
+  "generatedAt": "2026-09-29T03:34:12.050Z",
+  "release": {
+    "name": "golive",
+    "version": "0.1.0-alpha.5",
+    "bundleDigest": "b6456e1d16f2e5f2b8edd84b70e4c16b0356d71fe600741054a33a2794f903eb",
+    "ref": "v0.1.0-alpha.5"
+  },
+  "app": {
+    "root": "<worktree>",
+    "framework": "static"
+  },
+  "items": [],
+  "verified": [
+    "vercel project golive-gstack-demo: still the project this repo links (prj_z1YyNG9mw02ymcfp8SWY2OchYdOD)"
+  ],
+  "notChecked": [],
+  "limits": [
+    "status compares only what golive recorded (state, provider markers, its own step evidence) with a read taken now; resources created outside golive, and facts no provider read exposes, are outside it."
+  ],
+  "summary": {
+    "items": 0,
+    "actionable": 0,
+    "unverifiable": 0,
+    "high": 0,
+    "medium": 0,
+    "info": 0
+  }
+}

@@ -1,0 +1,5 @@
+# Allowlist: upload only the app. Keeps golive state, reports and repo docs off the public site.
+/*
+!api
+!index.html
+!vercel.json

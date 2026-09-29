@@ -3,4 +3,5 @@ node_modules/
 .golive/
 GOLIVE_REPORT.md
 GOLIVE_HANDOVER.md
+.claude/
 .DS_Store
