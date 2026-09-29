@@ -4,9 +4,10 @@ Verbatim excerpts from the Claude Code session that ran this walkthrough, genera
 the session JSONL (`session-2d0d7f0b.jsonl`).
 
 Redactions only: local absolute paths → `<worktree>` / `<local-path>`; the machine username →
-`<user>`; harness scratch paths → `<scratchpad>`; harness-internal MCP calls → `[internal tool]`;
-rows of a Vercel team listing that named other projects → `<redacted: another project in the same
-Vercel team>`. Long tool outputs end with an `elided` marker. Nothing else is rewritten.
+`<user>`; harness scratch paths → `<scratchpad>`; harness-internal MCP calls → `[internal tool]`
+(the work-ledger calls `mcp__agentacct__*` are shown verbatim); rows of a Vercel team listing
+that named other projects → `<redacted: another project in the same Vercel team>`. Long tool
+outputs end with an `elided` marker. Nothing else is rewritten.
 
 Relative links inside quoted agent messages are as they were written at the time and may not
 resolve from this directory. The raw JSONL stays local (see WALKTHROUGH.md, Provenance).
@@ -989,7 +990,7 @@ Next steps:
 - **Platform CLIs are optional.** If `fly` or `vercel` CLI isn't installed, fall back to URL-based health checks.
 
 
-**[2026-09-29 02:38] [internal tool]**
+**[2026-09-29 02:38] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-config", "section_status": "started", "section_title": "Configure deploy settings via /setup-deploy", "kind": "implementation", "project_dir": "<worktree>"}`
 
 **[2026-09-29 02:38] [internal tool]**
 
@@ -1644,7 +1645,7 @@ DUR: 580
 CLEAN_EXIT
 ```
 
-**[2026-09-29 02:48] [internal tool]**
+**[2026-09-29 02:48] mcp__agentacct__agentacct_record_machine_check** `{"name": "decision-log readback", "command": "gstack-decision-search --recent 5", "exit_code": 0, "result": "passed", "evidence_type": "other", "summary": "All 3 logged deploy decisions (Vercel CLI trigger, /api/health check, config deferred until first deploy) read back from the gstack decision store. Worktree is still clean; CLAUDE.md was deliberately not written.", "section_id": "setup-deploy-config", "source": "c`
 
 **[2026-09-29 02:48] result**
 
@@ -1673,7 +1674,7 @@ CLEAN_EXIT
 }
 ```
 
-**[2026-09-29 02:48] [internal tool]**
+**[2026-09-29 02:48] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-config", "section_status": "completed", "section_title": "Configure deploy settings via /setup-deploy", "kind": "implementation", "project_dir": "<worktree>", "summary": "Deploy config was deliberately deferred: no platform or live URL exists yet, so the user chose to deploy with GoLive first and re-run /setup-deploy after.\nRecorded their`
 
 **[2026-09-29 02:48] result**
 
@@ -1720,7 +1721,7 @@ CLEAN_EXIT
 recorded by airis
 ```
 
-**[2026-09-29 02:48] [internal tool]**
+**[2026-09-29 02:48] mcp__agentacct__agentacct_work_status** `{}`
 
 **[2026-09-29 02:49] result**
 
@@ -1790,7 +1791,7 @@ Don't commit anything — leave the plan/report files in the worktree for now.
 </pasted_content id="f5df">
 
 
-**[2026-09-29 03:00] [internal tool]**
+**[2026-09-29 03:00] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "golive-vercel-deploy", "section_status": "started", "section_title": "GoLive: deploy demo to Vercel (hosting only)", "kind": "implementation", "project_dir": "<worktree>"}`
 
 **[2026-09-29 03:00] [internal tool]**
 
@@ -3149,7 +3150,7 @@ The new plan is `c58ae49e91a9`, and it now selects the existing project instead 
 File created successfully at: <worktree>/docs/GOLIVE-hosting-PLAN.md (file state is current in your context — no need to Read it back)
 ```
 
-**[2026-09-29 03:05] [internal tool]**
+**[2026-09-29 03:05] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "golive-vercel-deploy", "section_status": "checkpoint", "section_title": "GoLive: deploy demo to Vercel (hosting only)", "summary": "Plan c58ae49e91a9 is ready and waiting for approval. It pins existing project golive-gstack-demo in team AIRIS-AGENTACCT (created with the user's OK) and deploys production once (--confirm-live). Added an allowlist .vercel`
 
 **[2026-09-29 03:05] result**
 
@@ -3647,7 +3648,7 @@ EXIT:0
 ?? golive.yaml
 ```
 
-**[2026-09-29 03:10] [internal tool]**
+**[2026-09-29 03:10] mcp__agentacct__agentacct_record_machine_check** `{"name": "golive verify (full)", "command": "node golive.mjs verify --json", "exit_code": 0, "result": "passed", "evidence_type": "smoke", "summary": "3 pass (accounts, env-parity, bundle-secrets), 0 fail, 1 warn (site-headers: x-content-type-options and clickjacking protection missing), 18 skip (not applicable / no preview). The report is in GOLIVE_REPORT.md.", "section_id": "golive-vercel-deploy", "source": "claude`
 
 **[2026-09-29 03:10] result**
 
@@ -3676,7 +3677,7 @@ EXIT:0
 }
 ```
 
-**[2026-09-29 03:10] [internal tool]**
+**[2026-09-29 03:10] mcp__agentacct__agentacct_record_machine_check** `{"name": "production HTTP probes", "command": "curl -s -o /dev/null -w '%{http_code}' https://golive-gstack-demo.vercel.app{/,/api/health,/golive.yaml,/.golive/state.json,/README.md,/docs/GOLIVE-hosting-PLAN.md,/.vercelignore}", "exit_code": 0, "result": "passed", "evidence_type": "smoke", "summary": "/ and /api/health return 200 (health body ok:true). golive.yaml, .golive/state.json, README.md, docs/ and .verceligno`
 
 **[2026-09-29 03:10] result**
 
@@ -3705,7 +3706,7 @@ EXIT:0
 }
 ```
 
-**[2026-09-29 03:10] [internal tool]**
+**[2026-09-29 03:10] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "golive-vercel-deploy", "section_status": "completed", "section_title": "GoLive: deploy demo to Vercel (hosting only)", "kind": "implementation", "files": [".vercelignore", "golive.yaml", "docs/GOLIVE-hosting-PLAN.md", "docs/GOLIVE-hosting-RESULT.md"], "project_dir": "<worktree>", "summary": "The demo is live at https://golive-gstack-demo.vercel.app (Ve`
 
 **[2026-09-29 03:10] result**
 
@@ -3757,7 +3758,7 @@ EXIT:0
 recorded by airis
 ```
 
-**[2026-09-29 03:10] [internal tool]**
+**[2026-09-29 03:10] mcp__agentacct__agentacct_work_status** `{}`
 
 **[2026-09-29 03:10] result**
 
@@ -3824,7 +3825,7 @@ Which option do you want for `/setup-deploy`? And should I fix the missing heade
 
 Four steps, in order: re-run `/setup-deploy` and stop at "no platform", fix the headers through GoLive, re-run `/setup-deploy` to write the config, and commit nothing along the way. Starting with the re-run.
 
-**[2026-09-29 03:20] [internal tool]**
+**[2026-09-29 03:20] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-rerun-after-golive", "section_status": "started", "section_title": "Re-run /setup-deploy after GoLive (record no-detect)", "kind": "testing", "project_dir": "<worktree>"}`
 
 **[2026-09-29 03:20] [internal tool]**
 
@@ -4962,7 +4963,7 @@ CLAUDE_MD_ABSENT
 ?? golive.yaml
 ```
 
-**[2026-09-29 03:20] [internal tool]**
+**[2026-09-29 03:20] mcp__agentacct__agentacct_record_machine_check** `{"name": "setup-deploy platform detection (run 2, post-GoLive)", "command": "setup-deploy Step 2 detection: [ -f vercel.json ] || [ -d .vercel ] etc.", "exit_code": 0, "result": "passed", "evidence_type": "other", "summary": "Detection printed no PLATFORM line after the GoLive deploy: vercel.json and .vercel are absent, .golive/state.json is present. The run was cancelled as instructed; CLAUDE.md is still absent.", "`
 
 **[2026-09-29 03:20] result**
 
@@ -4991,7 +4992,7 @@ CLAUDE_MD_ABSENT
 }
 ```
 
-**[2026-09-29 03:20] [internal tool]**
+**[2026-09-29 03:20] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-rerun-after-golive", "section_status": "completed", "section_title": "Re-run /setup-deploy after GoLive (record no-detect)", "kind": "testing", "project_dir": "<worktree>", "summary": "Recorded that /setup-deploy still finds no platform after GoLive deployed to Vercel, then cancelled without writing config as instructed.\nStep 1: NO_CONFIG`
 
 **[2026-09-29 03:20] [internal tool]**
 
@@ -5274,7 +5275,7 @@ Then re-run /setup-deploy — it should detect vercel.json, use the saved "Verce
 … (+13 chars elided)
 ```
 
-**[2026-09-29 03:32] [internal tool]**
+**[2026-09-29 03:32] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "headers-fix-cli-deploy", "section_status": "started", "section_title": "Add security headers; CLI redeploy; golive verify/status", "kind": "implementation", "project_dir": "<worktree>", "files": ["vercel.json", ".vercelignore"]}`
 
 **[2026-09-29 03:33] [internal tool]**
 
@@ -5625,7 +5626,7 @@ The file <worktree>/docs/GOLIVE-hosting-RESULT.md has been updated successfully.
 The file <worktree>/docs/GOLIVE-hosting-RESULT.md has been updated successfully. (file state is current in your context — no need to Read it back)
 ```
 
-**[2026-09-29 03:34] [internal tool]**
+**[2026-09-29 03:34] mcp__agentacct__agentacct_record_machine_check** `{"name": "golive verify after headers redeploy", "command": "node golive.mjs verify --json", "exit_code": 0, "result": "passed", "evidence_type": "smoke", "summary": "site-headers went from warn/medium to warn/low, not pass: nosniff and X-Frame-Options DENY are now present, but pass also needs the optional CSP, referrer-policy and permissions-policy. Other checks: 3 pass, 18 skip. curl confirms both headers on / and `
 
 **[2026-09-29 03:34] result**
 
@@ -5654,7 +5655,7 @@ The file <worktree>/docs/GOLIVE-hosting-RESULT.md has been updated successfully.
 }
 ```
 
-**[2026-09-29 03:34] [internal tool]**
+**[2026-09-29 03:34] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "headers-fix-cli-deploy", "section_status": "completed", "section_title": "Add security headers; CLI redeploy; golive verify/status", "kind": "implementation", "project_dir": "<worktree>", "files": ["vercel.json", ".vercelignore", "docs/GOLIVE-hosting-RESULT.md", "docs/GOLIVE-hosting-STATUS-raw.json"], "summary": "The headers are live (nosniff, X-Frame-`
 
 **[2026-09-29 03:34] result**
 
@@ -5712,7 +5713,7 @@ recorded by airis
 
 Step 2 is recorded. Now step 3: the final `/setup-deploy` run.
 
-**[2026-09-29 03:35] [internal tool]**
+**[2026-09-29 03:35] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-final", "section_status": "started", "section_title": "/setup-deploy run 3: detect Vercel, write config", "kind": "implementation", "project_dir": "<worktree>"}`
 
 **[2026-09-29 03:35] [internal tool]**
 
@@ -6902,7 +6903,7 @@ bacacf9d-9fe3-4e6a-bbc7-5ab65bda1c4e
 DONE
 ```
 
-**[2026-09-29 03:36] [internal tool]**
+**[2026-09-29 03:36] mcp__agentacct__agentacct_record_machine_check** `{"name": "setup-deploy run 3 verify (health + status cmd)", "command": "curl -sf https://golive-gstack-demo.vercel.app/api/health; vercel ls golive-gstack-demo --prod --scope airis-agentacct", "exit_code": 0, "result": "passed", "evidence_type": "smoke", "files": ["CLAUDE.md"], "summary": "Detection printed PLATFORM:vercel (from vercel.json; no .vercel/). Health check returns 200 with ok:true, and the status command `
 
 **[2026-09-29 03:36] result**
 
@@ -6934,7 +6935,7 @@ DONE
 }
 ```
 
-**[2026-09-29 03:36] [internal tool]**
+**[2026-09-29 03:36] mcp__agentacct__agentacct_record_section** `{"source": "claude-code", "client": "claude-code", "section_id": "setup-deploy-final", "section_status": "completed", "section_title": "/setup-deploy run 3: detect Vercel, write config", "kind": "implementation", "project_dir": "<worktree>", "files": ["CLAUDE.md"], "summary": "/setup-deploy detected Vercel from vercel.json and wrote ## Deploy Configuration to CLAUDE.md with https://golive-gstack-demo.vercel.app and t`
 
 **[2026-09-29 03:36] result**
 
@@ -6991,7 +6992,7 @@ DONE
 recorded by airis
 ```
 
-**[2026-09-29 03:36] [internal tool]**
+**[2026-09-29 03:36] mcp__agentacct__agentacct_work_status** `{}`
 
 **[2026-09-29 03:36] result**
 
