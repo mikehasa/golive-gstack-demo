@@ -18,7 +18,7 @@ the owner's own accounts) and [gstack](https://github.com/garrytan/gstack)'s dep
 The full sequence, key outputs and the independent verification table:
 [evidence/WALKTHROUGH.md](evidence/WALKTHROUGH.md). Run records:
 [plan](docs/GOLIVE-hosting-PLAN.md) · [result](docs/GOLIVE-hosting-RESULT.md) ·
-[status](docs/GOLIVE-hosting-STATUS-raw.json).
+[status](docs/GOLIVE-hosting-STATUS-raw.json) · [session transcript](evidence/transcript.md).
 
 ## The walkthrough, as run
 

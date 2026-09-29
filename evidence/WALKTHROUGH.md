@@ -7,7 +7,7 @@ deployment. Everything below was produced on 2026-09-28/29 against the live proj
 
 - **Live:** <https://golive-gstack-demo.vercel.app> — deployed on the owner's own Vercel account, team `AIRIS-AGENTACCT`
 - **Versions:** GoLive `v0.1.0-alpha.5` · gstack (local install) `v1.60.1.0`
-- **Run records:** [plan](../docs/GOLIVE-hosting-PLAN.md) · [result](../docs/GOLIVE-hosting-RESULT.md) · [status](../docs/GOLIVE-hosting-STATUS-raw.json)
+- **Run records:** [plan](../docs/GOLIVE-hosting-PLAN.md) · [result](../docs/GOLIVE-hosting-RESULT.md) · [status](../docs/GOLIVE-hosting-STATUS-raw.json) · [session transcript](transcript.md)
 
 ## 1 — Before: no platform, and gstack says so
 
@@ -82,8 +82,12 @@ airis-agentacct`, squash merges. Both the health check and the status command ra
 
 ## Provenance
 
-- Raw agent session transcript: **local only, not published** — `session-2d0d7f0b.jsonl`,
-  1,926,150 bytes, sha256 `92fa48375102007ddd26938442a1813ca0b7ffde6710a591065a5a20f976c273`.
+- [Session transcript](transcript.md): verbatim excerpts from the run, generated from the session
+  JSONL. Redacted: local absolute paths, the machine username, harness scratch paths, and the rows
+  of a Vercel team listing that named other projects. Nothing else is rewritten.
+- Raw JSONL (`session-2d0d7f0b.jsonl`, 1,926,150 bytes, sha256
+  `92fa48375102007ddd26938442a1813ca0b7ffde6710a591065a5a20f976c273`) stays local — it still
+  contains unredacted machine detail, including that full team project listing.
 - Nothing was committed during the run; a follow-up commit publishes these sanitized artifacts.
   Local absolute paths were replaced with `<worktree>`; provider team/project/deployment IDs are
   non-secret identifiers and are kept.
